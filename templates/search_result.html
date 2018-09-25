@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>レビュー評価予測システム | タイトルで予測 | 候補を選択</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h5>候補を選択...</h5>
+        <form class="col s12" action="./predictViaTitle" method="post">
+            <div class="row">
+                <div class="input-field col s12 center-align">
+                    {% if results %}
+                    <select name="selectedId" class="browser-default">
+                        {% for result in results %}
+                        <option value="{{ result['id'] }}">{{ result['title'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn waves-effect waves-light" type="submit">レビューを取得して判定</button>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</body>
+</html>

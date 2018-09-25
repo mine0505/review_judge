@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>レビュー評価予測システム</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+    <h3>レビュー評価予測システム</h3>
+    <div class="divider"></div>
+        <h5>レビューで予測</h5>
+        <form class="col s12" method="post">
+            <div class="row">
+                <div class="input-field col s12 center-align">
+                    <textarea name="review_text" rows=10 cols=100 placeholder="評価したいレビューを入力..." class="materialize-textarea" required></textarea>
+                    <button class="btn waves-effect waves-light" type="submit">判定する</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        {% if result %}
+        <div class="col s11 center-align">
+            <h5>予測結果</h5>
+
+            {% if num_array[0]<num_array[1] %}
+                <div class="card-panel light-green lighten-3">
+            {% endif %} 
+            {% if num_array[0]>=num_array[1] %}
+                <div class="card-panel pink lighten-4">
+            {% endif %}
+ 
+                <blockquote>{{ input_text }}</blockquote>
+                <p class="flow-text">
+                {% for prob_result in array_result %}
+                {{ prob_result }}<br>
+                {% endfor %}
+                </p>
+                <p class="z-depth-2">{{ result }}</p>
+            {% endif %}
+        </div>
+        <div class="col s11 left-align">
+            <a href="./search">タイトルで予測する</a>
+        </div>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</body>
+</html>
